@@ -15,7 +15,8 @@ case "$1" in
 		mv ~/.docker/machine ~/goinfre 
 		ln -s ~/goinfre/machine ~/.docker/machine ;;
 	-rm)docker-machine rm -y $vm_name
-		rm -rf ~/.docker/machine ~/goinfre/machine ;;
+		rm -rf ~/.docker/machine ~/goinfre/machine
+		VBoxManage unregistervm --delete $(VBoxManage list -l vms 2>/dev/null | grep UUID | awk '{print $2}' | tr ' ' '\n') ;;
 	-mc)docker-machine create $vm_name
 		eval $(docker-machine env $vm_name) ;;
 	-ms)docker-machine start $vm_name
