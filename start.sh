@@ -14,7 +14,7 @@ case "$1" in
 	-fs)bash ./scripts/clearcache.sh
 		mv ~/.docker/machine ~/goinfre 
 		ln -s ~/goinfre/machine ~/.docker/machine ;;
-	-rm)docker-machine rm $vm_name
+	-rm)docker-machine rm -y $vm_name
 		rm -rf ~/.docker/machine ~/goinfre/machine ;;
 	-mc)docker-machine create $vm_name
 		eval $(docker-machine env $vm_name) ;;

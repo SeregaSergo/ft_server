@@ -1,6 +1,6 @@
 #!/bin/bash
 
-bash ./cache.sh
+bash ./scripts/cache.sh
 echo y | exec $(rm -rf ~/Library/Application\ Support/Slack/Cache/*)
 echo y | exec $(rm -rf ~/Library/Application\ Support/Slack/Service\ Worker/CacheStorage/*)
 echo y | exec $(rm -rf ~/Library/Application\ Support/discord/Cache/*)

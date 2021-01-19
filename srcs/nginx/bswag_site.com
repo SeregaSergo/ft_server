@@ -1,6 +1,6 @@
 server {
     listen				443 ssl default_server;
-	listen				[::]:443;
+	listen				[::]:443 ssl default_server;
     server_name			bswag_site.com;
     ssl_certificate		/app/nginx/ssl/cert.crt;
     ssl_certificate_key	/app/nginx/ssl/cert.key;
@@ -9,18 +9,23 @@ server {
 	index				index.php index.html index.htm;
 		
 	location / {
-		try_files $uri $uri/=404;
+		autoindex off;
 	}
 
-	location ~ /.php$ {
+	location ~ \.php$ {
 		include snippets/fastcgi-php.conf;
-		fastcgi_pass unix:/var/run/php7.3-fpm.sock;
+		fastcgi_pass unix:/run/php/php7.3-fpm.sock;
+	}
+
+	location ~* \.(jpg|jpeg|gif)$ {
+		access_log   off;
+		expires      30d;
 	}
 }
 
 server {
-        listen 80;
-		listen [::]:80;
+        listen 80 default_server;
+		listen [::]:80 default_server;
         server_name bswag_site.com;
 		return 301 https://$host$request_uri;
 }
