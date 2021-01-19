@@ -1,4 +1,4 @@
-#ft_server
+# ft_server
 
 This repository was made for project ft_server in 21-school.
 
@@ -12,7 +12,7 @@ Usage of start.sh
 Change inside script vm_name and image_name if you want.
 
 
-. ./start.sh -s         Full start with moving your vm to derictory goinfre
+. ./start.sh -s         Full start with moving your vm to directory goinfre
 
 . ./start.sh -ms        Start your existing machine
 
