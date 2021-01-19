@@ -16,7 +16,8 @@ case "$1" in
 		ln -s ~/goinfre/machine ~/.docker/machine ;;
 	-rm)docker-machine rm -y $vm_name
 		rm -rf ~/.docker/machine ~/goinfre/machine
-		VBoxManage unregistervm --delete $(VBoxManage list -l vms 2>/dev/null | grep UUID | awk '{print $2}' | tr ' ' '\n') ;;
+		VBoxManage unregistervm --delete $(VBoxManage list vms 2>/dev/null | awk '{print $2}' | tr -d "{}" | tr ' ' '\n') 2>/dev/null
+		rm ~/Library/VirtualBox/HostInterfaceNetworking-vboxnet0-Dhcpd.leases ;;
 	-mc)docker-machine create $vm_name
 		eval $(docker-machine env $vm_name) ;;
 	-ms)docker-machine start $vm_name
