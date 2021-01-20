@@ -17,9 +17,10 @@ server {
 		fastcgi_pass unix:/run/php/php7.3-fpm.sock;
 	}
 
-	location ~* \.(jpg|jpeg|gif)$ {
-		access_log   off;
-		expires      30d;
+	location ~* \.(jpg|jpeg|gif|txt|pdf|css|htmldocx|doc)$ {
+		root		/var/www/bswag_site.com/html;
+		access_log  off;
+		expires     30d;
 	}
 }
 
